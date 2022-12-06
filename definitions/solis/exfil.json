@@ -1,0 +1,88 @@
+{
+    "Apple iCloud": {
+        "process_name": ["icloudservices.exe",
+                         "cloudd"]
+    },
+    "Backblaze": {
+        "process_name": ["bztransmit.exe"]
+    },
+    "Box": {
+        "process_name": ["boxsync.exe",
+                         "boxsyncmonitor.exe",
+                         "syncupdaterservice.exe"]
+    },
+    "Carbonite": {
+        "process_name": ["CarboniteService.exe",
+                         "carbonitepreinstaller.exe"]
+    },
+    "CrashPlan": {
+        "process_name": ["CrashPlanService.exe",
+                         "CrashPlanDesktop.exe",
+                         "CrashPlanTray.exe"]
+    },
+    "CyberDuck": {
+        "process_name": ["cyberduck"]
+    },
+    "Dropbox": {
+        "domain": ["client.dropbox.com"],
+        "process_name": ["dropbox.exe",
+                         "Dropbox"]
+    },
+    "Filezilla": { 
+        "process_name": ["fzsftp.exe",
+                         "filezilla.exe",
+                         "fzputtygen.exe",
+                         "filezilla"]
+    },
+    "Foxit Cloud": {
+        "domain": ["foxitcloud.com"],
+        "process_name": ["foxit_cloudreading.exe"]
+    },
+    "FTP": { 
+        "process_name": ["ftp*.exe",
+                         "ftp"]
+    },
+    "Google Drive": {
+        "process_name": ["googledrivesync.exe"]
+    },
+    "Hightail": {
+        "domain": ["hightail.com"]
+    },
+    "JungleDisk": {
+        "process_name": ["junglediskmonitor.exe"]
+    },
+    "Mega": {
+        "process_name":["megasync", "megaAsync"],
+        "filemod":["megasync", "megaAsync"],
+        "domain":["mega.io"],
+        "url":["mega.io"]
+    },
+    "pushd": { 
+        "process_name": ["pushd.exe"]
+    },
+    "rclone": {
+        "process_name": ["rclone.exe"],
+        "filemod": ["rclone.exe", "rclone.conf"]
+    },
+    "robocopy": { 
+        "process_name": ["robocopy.exe"]
+    },
+    "SCP": { 
+        "process_name": ["pscp.exe",
+                         "scp.exe",
+                         "winscp.exe"]
+    },
+    "SFTP": { 
+        "process_name": ["sftp*.exe",
+                         "sftp"]
+    },
+    "ShareIt": {
+        "process_name": ["shareit.exe"]
+    },
+    "Viivo": {
+        "process_name": ["viivo.exe"]
+    },
+    "xcopy": { 
+        "process_name": ["xcopy.exe"]
+    }  
+}

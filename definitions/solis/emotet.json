@@ -1,0 +1,20 @@
+{
+    "Tactical RMM": {
+        "process_name": ["tacticalrmm.exe",
+                         "TacticalAgent",
+                         "Mesh Agent",
+                         "MeshAgent.exe"],
+        "domain": ["floppasoftware.com"],
+        "url": ["api.floppasoftware.com",
+                "mesh.floppasoftware.com"]
+    },
+    "LNK Execution": {
+        "query": ["IndicatorName = \"ProcessStartedFromLnk\" AND ( SrcProcCmdLine RegExp \"^([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(?<!172\\.(16-31))(?<!127)(?<!^10)(?<!^0)\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(?<!192\\.168)(?<!172\\.(16-31))\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$\" OR SrcProcCmdLine In Contains Anycase (\"\\mshta.exe\", \"\\cmd.exe\", \"\\powershell.exe\", \"\\rundll32.exe\", \"\\regsvr32.exe\") ) AND IndicatorMetadata In Contains Anycase (\".zip\", \".iso\")"]
+    },
+    "Archive to ISO": {
+        "query": ["EndpointMachineType In ( \"desktop\" , \"laptop\" ) AND EventType = \"File Creation\" AND ( ( TgtFilePath Contains \".zip\" AND TgtFilePath Contains \".iso\" AND TgtFilePath Does Not Contain \".lnk\" ) OR ( CmdLine In Contains  ( \".zip\" , \".7z\" , \".rar\" ) AND TgtFilePath RegExp \"\\.iso$\" ) )"]
+    },
+    "Excel Maldoc": {
+        "query": ["SrcProcParentName in contains anycase (\"excel.exe\", \"cmd.exe\", \"powershell.exe\", \"regsvr32.exe\", \"explorer.exe\") AND SrcProcName = \"regsvr32.exe\" AND TgtProcName = \"regsvr32.exe\" AND CmdLine contains \"AppData\\Local\" AND CmdLine EndsWith \".dll"]
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "Suspicious Binary Locations": {
+        "filemod": ["^(?i)C:\\\\([^\\\\]*|programdata\\\\[^\\\\]*|users\\\\public\\\\(?!appdata\\\\).*|users\\\\.*\\\\Pictures\\\\.*|Perflogs\\\\[^\\\\]*)\\.(exe|dll|msi){1}$"],
+        "process_name": ["^(?i)C:\\\\([^\\\\]*|programdata\\\\[^\\\\]*|users\\\\public\\\\(?!appdata\\\\).*|users\\\\.*\\\\Pictures\\\\.*|Perflogs\\\\[^\\\\]*)\\.(exe|dll|msi){1}$"]
+    }
+}

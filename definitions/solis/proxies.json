@@ -1,0 +1,12 @@
+{
+    "fiddler": {
+        "process_name": ["fiddler.exe"]
+    },
+    "privoxy": {
+        "process_name": ["privoxy.exe"]
+    },
+    "ngrok": {
+        "process_name": ["Ngrok.exe"],
+        "filemod": ["Ngrok"]
+    }
+}
