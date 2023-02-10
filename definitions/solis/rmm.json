@@ -120,7 +120,8 @@
         "filemod": ["RealVNC"]
     },
     "RemoteUtilities": {
-        "process_name": ["rutserv.exe"],
+        "process_name": ["rutserv.exe",
+                         "rfusclient.exe"],
         "domain": ["remoteutilities.com"],
         "digsig_publisher": ["Remote Utilities LLC"]
     },
@@ -154,7 +155,7 @@
                          "TacticalAgent",
                          "Mesh Agent",
                          "MeshAgent.exe"],
-        "dns": ["floppasoftware.com"],
+        "domain": ["floppasoftware.com"],
         "url": ["api.floppasoftware.com",
                 "mesh.floppasoftware.com"]
     },

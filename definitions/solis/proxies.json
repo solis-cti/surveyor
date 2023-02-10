@@ -8,5 +8,11 @@
     "ngrok": {
         "process_name": ["Ngrok.exe"],
         "filemod": ["Ngrok"]
+    },
+    "psiphon": {
+        "process_name": ["psiphon-tunnel-core.exe",
+                         "psiphon3.exe"],
+        "filemod": ["Psighon3\\psiphon.config",
+                    "psiphon"]
     }
 }
