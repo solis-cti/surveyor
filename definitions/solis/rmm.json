@@ -30,7 +30,7 @@
     "Atera": {
         "process_name": ["atera_agent.exe",
                          "AteraAgent.exe"],
-        "filemod": ["Atera"]
+        "filemod": ["\\Atera"]
     },
     "BeyondTrust (Bomgar)": {
         "process_name": ["bomgar-scc.exe",
@@ -60,7 +60,10 @@
         "process_name": ["distant-desktop.exe"]
     },
     "DW Service": {
-        "process_name": ["dwagsvc.exe"],
+        "process_name": ["dwagsvc.exe",
+                         "dwagent.exe",
+                         "dwaginc.exe"],
+        "filemod": ["DWAgent"],
         "digsig_publisher": ["DWSNET OÜ"]
     },
     "GoToMyPC": { 

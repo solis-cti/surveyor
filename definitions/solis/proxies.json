@@ -12,7 +12,10 @@
     "psiphon": {
         "process_name": ["psiphon-tunnel-core.exe",
                          "psiphon3.exe"],
-        "filemod": ["Psighon3\\psiphon.config",
+        "filemod": ["Psiphon3\\psiphon.config",
                     "psiphon"]
+    },
+    "X-VPN": {
+        "process_name": ["xvpn.exe"]
     }
 }
