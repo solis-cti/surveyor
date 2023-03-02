@@ -1,8 +1,8 @@
 {
     "cobalt strike": {
-        "query": ["ProcessName in contains anycase (\"regsvr32.exe\", \"rundll32.exe\") AND SrcProcUser ContainsCIS \"NT AUTHORITY\\SYSTEM\" AND UrlAction = \"GET"]
+        "query": ["ProcessName in contains anycase (\"regsvr32.exe\", \"rundll32.exe\") AND SrcProcUser ContainsCIS \"NT AUTHORITY\\SYSTEM\" AND UrlAction = \"GET\""]
     },
     "brute ratel": {
-        "modload": ["\\version.dll\" AND NOT ModulePath ContainsCIS \"\\windows\\system32\" AND NOT ModulePath ContainsCIS \"\\windows\\syswow64"]
+        "modload": ["\\version.dll\" AND NOT ModulePath ContainsCIS \"\\windows\\system32\" AND NOT ModulePath ContainsCIS \"\\windows\\syswow64\""]
     }
 }

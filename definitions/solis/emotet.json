@@ -18,15 +18,15 @@
         "query": ["EndpointMachineType In ( \"desktop\" , \"laptop\" ) AND EventType = \"File Creation\" AND ( ( TgtFilePath Contains \".zip\" AND TgtFilePath Contains \".iso\" AND TgtFilePath Does Not Contain \".lnk\" ) OR ( CmdLine In Contains  ( \".zip\" , \".7z\" , \".rar\" ) AND TgtFilePath RegExp \"\\.iso$\" ) )"]
     },
     "Excel Maldoc": {
-        "query": ["SrcProcParentName in contains anycase (\"excel.exe\", \"cmd.exe\", \"powershell.exe\", \"regsvr32.exe\", \"explorer.exe\") AND SrcProcName = \"regsvr32.exe\" AND TgtProcName = \"regsvr32.exe\" AND CmdLine contains \"AppData\\Local\" AND CmdLine EndsWith \".dll"]
+        "query": ["SrcProcParentName in contains anycase (\"excel.exe\", \"cmd.exe\", \"powershell.exe\", \"regsvr32.exe\", \"explorer.exe\") AND SrcProcName = \"regsvr32.exe\" AND TgtProcName = \"regsvr32.exe\" AND CmdLine contains \"AppData\\Local\" AND CmdLine EndsWith \".dll\""]
     },
     "Maldoc Network Connection": {
-        "query": ["SrcProcParentName in contains anycase (\"winword.exe\", \"excel.exe\", \"cmd.exe\") AND SrcProcCmdLine containsCIS \"powershell\" AND SrcProcCmdLine containsCIS \"-e \" AND NetEventDirection = \"OUTGOING"]
+        "query": ["SrcProcParentName in contains anycase (\"winword.exe\", \"excel.exe\", \"cmd.exe\") AND SrcProcCmdLine containsCIS \"powershell\" AND SrcProcCmdLine containsCIS \"-e \" AND NetEventDirection = \"OUTGOING\""]
     },
     "Emotet Recon": {
         "query": ["SrcProcName containsCIS \"regsvr32.exe\" AND TgtProcName in contains anycase (\"ipconfig.exe\", \"systeminfo.exe\", \"nltest.exe\")"]
     },
     "Process Injection": {
-        "query": ["EventType = \"Remote Thread Creation\" AND SrcProcName In Contains (\"rundll32.exe\", \"regsvr32.exe\") AND TgtProcName In Contains (\"winlogon.exe\", \"RuntimeBroker.exe\", \"svchost.exe\", \"taskhostw.exe\", \"dllhost.exe\") AND CmdLine Does Not Contain \"WRusr.dll\\\",SynProc"]
+        "query": ["EventType = \"Remote Thread Creation\" AND SrcProcName In Contains (\"rundll32.exe\", \"regsvr32.exe\") AND TgtProcName In Contains (\"winlogon.exe\", \"RuntimeBroker.exe\", \"svchost.exe\", \"taskhostw.exe\", \"dllhost.exe\") AND CmdLine Does Not Contain \"WRusr.dll\\\",SynProc\""]
     }
 }

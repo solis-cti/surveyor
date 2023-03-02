@@ -1,6 +1,9 @@
 {
     "Suspicious Binary Locations": {
-        "filemod": ["^(?i)C:\\\\([^\\\\]*|programdata\\\\[^\\\\]*|users\\\\public\\\\(?!appdata\\\\).*|users\\\\.*\\\\Pictures\\\\.*|Perflogs\\\\[^\\\\]*)\\.(exe|dll|msi){1}$"],
-        "process_name": ["^(?i)C:\\\\([^\\\\]*|programdata\\\\[^\\\\]*|users\\\\public\\\\(?!appdata\\\\).*|users\\\\.*\\\\Pictures\\\\.*|Perflogs\\\\[^\\\\]*)\\.(exe|dll|msi){1}$"]
+        "filemod": ["^(?i)C:\\\\([^\\\\]*|programdata\\\\[^\\\\]*|users\\\\public\\\\(?!appdata\\\\).*|users\\\\.*\\\\Pictures\\\\.*|Perflogs\\\\[^\\\\]*)\\.(exe|dll|msi){1}$\""],
+        "process_name": ["^(?i)C:\\\\([^\\\\]*|programdata\\\\[^\\\\]*|users\\\\public\\\\(?!appdata\\\\).*|users\\\\.*\\\\Pictures\\\\.*|Perflogs\\\\[^\\\\]*)\\.(exe|dll|msi){1}$\""]
+    },
+    "WinBinary In Temp Directories": {
+        "query": ["ProcessName ContainsCIS \"copy.exe\" AND CmdLine ContainsCIS \"\\windows\\system32\" AND CmdLine ContainsCIS \"\\AppData\\Local\\Temp\""]
     }
 }
