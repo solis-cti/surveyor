@@ -1,12 +1,12 @@
 {
     "AweRay (AweSun)": {
-        "process_name": ["aweray_remote*.exe"],
+        "process_name": ["aweray_remote"],
         "domain": ["asapi.aweray.net", 
                    "asapi-us.aweray.net"],
         "digsig_publisher": ["AWERAY PTE. LTD."]
     },
     "Ammyy Admin": { 
-        "process_name": ["aa_v*.exe"],
+        "process_name": ["aa_v"],
         "domain": ["ammyy.com"]
     },
     "AeroAdmin" : {
@@ -49,7 +49,7 @@
         "internal_name": ["ConnectWise"]
     },
     "Chrome Remote Desktop": {
-        "cmdline": ["cmdline:efmjfjelnicpmdcmfikempdhlmainjcb*"],
+        "cmdline": ["cmdline:efmjfjelnicpmdcmfikempdhlmainjcb"],
         "domain": ["remotedesktop.google.com"]
     },
     "DameWare": { 
@@ -139,7 +139,11 @@
     "Splashtop": {
         "process_name": ["strwinclt.exe",
                          "Splashtop"],
-        "digsig_publisher": ["Splashtop Inc."]
+        "digsig_publisher": ["Splashtop Inc."],
+        "domain": ["relay.splashtop.com",
+                   "s2.symcb.com",
+                   "sv.symcd.com",
+                   "api.splashtop.com"]
     },
     "Supremo": {
         "process_name": ["supremo.exe", 
