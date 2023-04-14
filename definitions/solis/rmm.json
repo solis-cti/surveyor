@@ -9,6 +9,10 @@
         "process_name": ["aa_v"],
         "domain": ["ammyy.com"]
     },
+    "Action1": {
+        "filemod": ["action1_agent.exe", "action1_remote.exe"],
+        "process_name": ["action1_agent.exe", "action1_remote.exe"]
+    },
     "AeroAdmin" : {
         "process_name": ["AeroAdmin.exe"],
         "domain": ["aeroadmin.com"],
