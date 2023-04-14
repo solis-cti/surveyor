@@ -20,6 +20,9 @@
                          "CrashPlanDesktop.exe",
                          "CrashPlanTray.exe"]
     },
+    "Curl Upload": {
+        "cmdline": ["curl -T"]
+    },
     "CyberDuck": {
         "process_name": ["cyberduck"]
     },
@@ -27,6 +30,10 @@
         "domain": ["client.dropbox.com"],
         "process_name": ["dropbox.exe",
                          "Dropbox"]
+    },
+    "DropMeFiles": {
+        "domain": ["dropmefiles.com"],
+        "url": ["dropmefiles.com"]
     },
     "Filezilla": { 
         "process_name": ["fzsftp.exe",
@@ -54,8 +61,8 @@
     "Mega": {
         "process_name":["megasync", "megaAsync"],
         "filemod":["megasync", "megaAsync"],
-        "domain":["mega.io"],
-        "url":["mega.io"]
+        "domain":["mega.io", "mega.nz"],
+        "url":["mega.io", "mega.nz"]
     },
     "pushd": { 
         "process_name": ["pushd.exe"]
@@ -78,6 +85,10 @@
     },
     "ShareIt": {
         "process_name": ["shareit.exe"]
+    },
+    "Simple File Upload Sites": {
+        "domain": ["temp.sh", "transfer.sh", "termbin.com", "pomf.se"],
+        "url": ["temp.sh", "transfer.sh", "termbin.com", "pomf.se"]
     },
     "Viivo": {
         "process_name": ["viivo.exe"]
