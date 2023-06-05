@@ -7,6 +7,18 @@ import requests
 
 from common import Product, Tag, Result
 
+PARAMETER_MAPPING: dict[str, str] = {
+    'process_name': 'FileName',
+    'filemod': 'FileName',
+    'ipaddr': 'RemoteIP',
+    'cmdline': 'ProcessCommandLine',
+    'digsig_publisher': 'Signer',
+    'domain': 'RemoteUrl',
+    'internal_name': 'ProcessVersionInfoInternalFileName',
+    'md5':'MD5',
+    'sha1':'SHA1',
+    'sha256':'SHA256'
+}
 
 class DefenderForEndpoints(Product):
     """
@@ -24,7 +36,7 @@ class DefenderForEndpoints(Product):
 
         super().__init__(self.product, profile, **kwargs)
 
-    def _authenticate(self):
+    def _authenticate(self) -> None:
         config = configparser.ConfigParser()
         config.sections()
         config.read(self.creds_file)
@@ -39,7 +51,7 @@ class DefenderForEndpoints(Product):
 
         self._token = self._get_aad_token(section['tenantId'], section['appId'], section['appSecret'])
 
-    def _get_aad_token(self, tenant_id: str, app_id: str, app_secret: str):
+    def _get_aad_token(self, tenant_id: str, app_id: str, app_secret: str) -> str:
         """
         Retrieve an authentication token from Azure Active Directory using app ID and secret.
         """
@@ -81,7 +93,7 @@ class DefenderForEndpoints(Product):
 
         return list(results)
 
-    def _get_default_header(self):
+    def _get_default_header(self) -> dict[str, str]:
         return {
             "Authorization": 'Bearer ' + self._token,
             "Content-Type": 'application/json',
@@ -91,14 +103,14 @@ class DefenderForEndpoints(Product):
     def process_search(self, tag: Tag, base_query: dict, query: str) -> None:
         query = query + self.build_query(base_query)
 
-        query = "DeviceEvents " + query + \
-                " | project DeviceName, AccountName, ProcessCommandLine, FolderPath, Timestamp "
+        query = "union DeviceProcessEvents, DeviceFileEvents, DeviceRegistryEvents, DeviceNetworkEvents, DeviceImageLoadEvents, DeviceFileCertificateInfo, DeviceEvents " \
+                + query + " | project DeviceName, AccountName, ProcessCommandLine, FolderPath, Timestamp "
         query = query.rstrip()
 
         self.log.debug(f'Query: {query}')
-        query = {'Query': query}
+        full_query = {'Query': query}
 
-        results = self._post_advanced_query(data=query, headers=self._get_default_header())
+        results = self._post_advanced_query(data=full_query, headers=self._get_default_header())
         self._add_results(list(results), tag)
 
     def nested_process_search(self, tag: Tag, criteria: dict, base_query: dict) -> None:
@@ -108,28 +120,25 @@ class DefenderForEndpoints(Product):
 
         try:
             for search_field, terms in criteria.items():
-                all_terms = ', '.join(f"'{term}'" for term in terms)
-                if search_field == 'process_name':
-                    query = f" | where FileName has_any ({all_terms})"
-                elif search_field == "filemod":
-                    query = f" | where FileName has_any ({all_terms})"
-                elif search_field == "ipaddr":
-                    query = f" | where RemoteIP has_any ({all_terms})"
-                elif search_field == "cmdline":
-                    query = f" | where ProcessCommandLine has_any ({all_terms})"
-                elif search_field == "digsig_publisher":
-                    query = f" | where Signer has_any ({all_terms})"
-                elif search_field == "domain":
-                    query = f" | where RemoteUrl has_any ({all_terms})"
-                elif search_field == "internal_name":
-                    query = f" | where ProcessVersionInfoInternalFileName has_any ({all_terms})"
+                if search_field == 'query':
+                    if isinstance(terms, list):
+                        if len(terms) > 1:
+                            query = ' '.join(terms)
+                        else:
+                            query = terms[0]
+                    else:
+                        query = terms
                 else:
-                    self._echo(f'Query filter {search_field} is not supported by product {self.product}',
-                               logging.WARNING)
-                    continue
+                    all_terms = ', '.join(f"'{term}'" for term in terms)
+                    if search_field in PARAMETER_MAPPING:
+                        query = f" | where {PARAMETER_MAPPING[search_field]} has_any ({all_terms})"
+                    else:
+                        self._echo(f'Query filter {search_field} is not supported by product {self.product}',
+                                   logging.WARNING)
+                        continue
 
-                query = "union DeviceEvents, DeviceFileCertificateInfo, DeviceProcessEvents" + query_base + query \
-                        + " | project DeviceName, AccountName, ProcessCommandLine, FolderPath, Timestamp "
+                query = "union DeviceProcessEvents, DeviceFileEvents, DeviceRegistryEvents, DeviceNetworkEvents, DeviceImageLoadEvents, DeviceFileCertificateInfo, DeviceEvents" \
+                        + query_base + query + " | project DeviceName, AccountName, ProcessCommandLine, FolderPath, Timestamp "
                 query = query.rstrip()
 
                 self.log.debug(f'Query: {query}')
