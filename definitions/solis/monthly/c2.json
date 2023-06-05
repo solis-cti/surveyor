@@ -1,0 +1,11 @@
+{
+    "cobalt strike": {
+        "query": ["ProcessName in contains anycase (\"regsvr32.exe\", \"rundll32.exe\") AND SrcProcUser ContainsCIS \"NT AUTHORITY\\SYSTEM\" AND UrlAction = \"GET\"",
+                "SrcProcCmdLine ContainsCIS \"rundll32.exe\" AND SrcProcCmdLine RegExp \"\\\\ProgramData\\\\[^\\\\]*\\.dll,\\s?DllRegisterServer\"",
+                "EventType = \"Duplicate Process Handle\"  AND TgtProcImagePath ContainsCIS \"\\winlogon.exe\" AND NOT SrcProcImagePath In Contains Anycase (\"\\system32\\smss.exe\", \"\\system32\\svchost.exe\",  \"\\system32\\csrss.exe\", \"\\WerFault.exe\", \"c:\\Program files\", \"CreativeCloudSet-Up.exe\", \"Creative_Cloud_Set-Up.exe\", \"GoToAssistTools64.exe\" ) AND SrcProcImagePath EXISTS AND SrcProcPID != \"4\"",
+                "SrcProcImagePath In Contains Anycase (\"rundll32.exe\", \"regsvr32.exe\") AND  CmdLine RegExp \"\\.\\w{3}\\\"?,#1\""]
+    },
+    "brute ratel": {
+        "query": ["ModulePath ContainsCIS \"\\version.dll\" AND NOT ModulePath ContainsCIS \"\\windows\\system32\" AND NOT ModulePath ContainsCIS \"\\windows\\syswow64\""]
+    }
+}
