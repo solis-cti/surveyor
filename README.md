@@ -33,6 +33,29 @@ You can find out more about Surveyor from [this blog post](https://redcanary.com
 For information about installing and using Surveyor, see the [Getting started](https://github.com/redcanaryco/surveyor/wiki/Getting-started)
 page of the wiki. Surveyor requires Python 3.9+.
 
+### Installing
+
+Preparation of the virtual environment:
+
+Windows:
+```
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+Linux/Mac:
+```
+python -m venv venv
+source ./venv/bin/activate
+```
+
+
+Installation of dependencies:
+
+```
+pip install -r requirements.txt
+```
+
 ## Contribute to Surveyor
 
 We encourage and welcome your contributions to Surveyor. For more information,
@@ -51,4 +74,10 @@ surveyor.py --deffile sysinternals cbr
 
 ```
 surveyor.py --deffile sysinternals dfe --creds dfe_creds.ini
+```
+
+#### Running the `sysinternals` definition file using the `s1` product:
+
+```
+surveyor.py --deffile sysinternals s1 --creds s1_creds.ini
 ```

@@ -1,0 +1,28 @@
+{
+    "Onenote Domains": {
+        "domain": ["su1d.nerdpol.ovh",
+                "su2d.nerdpol.ovh",
+                "energizett.com",
+                "quasharr.ddns.net",
+                "quasharr21.ddns.net",
+                "quasharr22.ddns.net",
+                "quasharr33.ddns.net"],
+        "url": ["su1d.nerdpol.ovh",
+                "su2d.nerdpol.ovh",
+                "energizett.com",
+                "quasharr.ddns.net",
+                "quasharr21.ddns.net",
+                "quasharr22.ddns.net",
+                "quasharr33.ddns.net"],
+        "ipaddr": ["89.117.21.143",
+               "154.12.234.207",
+               "134.122.14.216", 
+               "138.68.178.104", 
+               "143.198.224.218"]
+    },
+    "Onenote Child Process": {
+        "query": ["SrcProcName = \"onenote.exe\" AND CmdLine containsCIS \"\\AppData\\Local\\Temp\\OneNote\\16.0\\Exported\""],
+        "query": ["SrcProcName = \"onenote.exe\" AND TgtProcName in (\"wscript.exe\", \"mshta.exe\")"],
+        "query": ["SrcProcParentImagePath endswith \"\\onenote.exe\" AND ( SrcProcImagePath In Contains Anycase (\"\\AppData\", \"\\Users\\Public\", \"\\ProgramData\", \"\\Windows\\Tasks\", \"\\Windows\\Temp\", \"\\Windows\\System32\\Tasks\") OR (SrcProcImagePath EndsWith \"\\explorer.exe\" AND CmdLine In Contains Anycase (\".hta\", \".vb\", \".wsh\", \".js\", \".ps\", \".scr\", \".pif\", \".bat\", \".cmd\")) OR SrcProcName In Contains Anycase (\"RUNDLL32.exe\", \"REGSVR32.exe\", \"bitsadmin.exe\", \"CertUtil.exe\", \"InstallUtil.exe\", \"schtasks.exe\", \"wmic.exe\", \"cscript.exe\", \"wscript.exe\", \"CMSTP.EXE\", \"Microsoft.Workflow.Compiler.exe\", \"RegAsm.exe\", \"RegSvcs.exe\", \"MSHTA.EXE\", \"Msxsl.exe\", \"IEExec.exe\", \"Cmd.Exe\", \"PowerShell.EXE\", \"HH.exe\", \"javaw.exe\", \"pcalua.exe\", \"curl.exe\", \"ScriptRunner.exe\", \"CertOC.exe\", \"WorkFolders.exe\", \"odbcconf.exe\", \"msiexec.exe\", \"msdt.exe\"))"]
+    }
+}

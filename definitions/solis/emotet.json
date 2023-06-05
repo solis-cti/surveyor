@@ -1,0 +1,32 @@
+{
+    "Tactical RMM": {
+        "process_name": ["tacticalrmm.exe",
+                         "MeshAgent.exe"],
+        "filemod": ["TacticalAgent",
+                    "Mesh Agent"],
+        "domain": ["floppasoftware.com"],
+        "url": ["api.floppasoftware.com",
+                "mesh.floppasoftware.com"]
+    },
+    "PowerTool": {
+        "process_name": ["PowerTool64.exe"]
+    },
+    "LNK Execution": {
+        "query": ["IndicatorName = \"ProcessStartedFromLnk\" AND ( SrcProcCmdLine RegExp \"^([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(?<!172\\.(16-31))(?<!127)(?<!^10)(?<!^0)\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(?<!192\\.168)(?<!172\\.(16-31))\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$\" OR SrcProcCmdLine In Contains Anycase (\"\\mshta.exe\", \"\\cmd.exe\", \"\\powershell.exe\", \"\\rundll32.exe\", \"\\regsvr32.exe\") ) AND IndicatorMetadata In Contains Anycase (\".zip\", \".iso\")"]
+    },
+    "Archive to ISO": {
+        "query": ["EndpointMachineType In ( \"desktop\" , \"laptop\" ) AND EventType = \"File Creation\" AND ( ( TgtFilePath Contains \".zip\" AND TgtFilePath Contains \".iso\" AND TgtFilePath Does Not Contain \".lnk\" ) OR ( CmdLine In Contains  ( \".zip\" , \".7z\" , \".rar\" ) AND TgtFilePath RegExp \"\\.iso$\" ) )"]
+    },
+    "Excel Maldoc": {
+        "query": ["SrcProcParentName in contains anycase (\"excel.exe\", \"cmd.exe\", \"powershell.exe\", \"regsvr32.exe\", \"explorer.exe\") AND SrcProcName = \"regsvr32.exe\" AND TgtProcName = \"regsvr32.exe\" AND CmdLine contains \"AppData\\Local\" AND CmdLine EndsWith \".dll\""]
+    },
+    "Maldoc Network Connection": {
+        "query": ["SrcProcParentName in contains anycase (\"winword.exe\", \"excel.exe\", \"cmd.exe\") AND SrcProcCmdLine containsCIS \"powershell\" AND SrcProcCmdLine containsCIS \"-e \" AND NetEventDirection = \"OUTGOING\""]
+    },
+    "Emotet Recon": {
+        "query": ["SrcProcName containsCIS \"regsvr32.exe\" AND TgtProcName in contains anycase (\"ipconfig.exe\", \"systeminfo.exe\", \"nltest.exe\")"]
+    },
+    "Process Injection": {
+        "query": ["EventType = \"Remote Thread Creation\" AND SrcProcName In Contains (\"rundll32.exe\", \"regsvr32.exe\") AND TgtProcName In Contains (\"winlogon.exe\", \"RuntimeBroker.exe\", \"svchost.exe\", \"taskhostw.exe\", \"dllhost.exe\") AND CmdLine Does Not Contain \"WRusr.dll\\\",SynProc\""]
+    }
+}
