@@ -45,6 +45,15 @@
         "domain": ["foxitcloud.com"],
         "process_name": ["foxit_cloudreading.exe"]
     },
+    "FreeFileSync": {
+        "digsig_publisher": ["Florian BAUER"],
+        "process_name": ["FreeFileSync",
+                        "RealTimeSync"],
+        "filemod": ["FreeFileSync",
+                    "RealTimeSync"],
+        "internal_name": ["FreeFileSync",
+                        "RealTimeSync"]
+    },
     "FTP": { 
         "process_name": ["ftp*.exe",
                          "ftp"]
@@ -95,5 +104,5 @@
     },
     "xcopy": { 
         "process_name": ["xcopy.exe"]
-    }  
+    }
 }
