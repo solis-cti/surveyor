@@ -1,0 +1,48 @@
+{
+    "Archive to ISO": {
+        "query": ["EndpointMachineType In ( \"desktop\" , \"laptop\" ) AND EventType = \"File Creation\" AND ( ( TgtFilePath Contains \".zip\" AND TgtFilePath In Contains (\".img\", \".iso\") AND TgtFilePath Does Not Contain \".lnk\" ) OR ( CmdLine In Contains  ( \".zip\" , \".7z\" , \".rar\" ) AND (TgtFilePath RegExp \"\\.iso$\" OR TgtFilePath RegExp \"\\.img$\") ) )"]
+    },
+    "Qbot TIDB IOCs": {
+        "query": ["TIIndicatorName Contains Anycase \"Qakbot\" AND ( TIIndicatorValue Does Not ContainCIS \"tria.ge\" AND TIIndicatorValue Does Not ContainCIS \".ms\" )"]
+    },
+    "JS Execution": {
+        "query": ["SrcProcName = \"wscript.exe\" AND SrcProcCmdLine RegExp \"[A-Ba-bD-Zd-z]:\\\\.*\\.js\" AND TgtProcCmdLine containsCIS \".ps1\""]
+    },
+    "Automated Recon": {
+        "query": ["SrcProcImagePath In Contains Anycase ( \"\\iexplore.exe\", \"\\dxdiag.exe\", \"\\explorer.exe\", \"\\wermgr.exe\", \"\\msra.exe\", \"\\OneDriveSetup.exe\", \"\\mobsync.exe\", \"\\xwizard.exe\" ) AND ChildProcCount > \"3\" AND TgtProcCmdLine In Contains Anycase (\"ipconfig /all\", \"net share\", \"net localgroup\", \"netstat -nao\", \"nslookup -querytype=ALL -timeout=12 _ldap._tcp.dc._msdcs.SRIC\", \"net view\", \"arp -a\", \"whoami /all\", \"route print\")"]
+    },
+    "Qbot Injection": {
+        "query": ["SrcProcImagePath In Contains Anycase ( \"\\rundll32.exe\", \"\\regsvr32.exe\" ) AND TgtProcImagePath In Contains Anycase ( \"\\iexplore.exe\", \"\\dxdiag.exe\", \"\\explorer.exe\", \"\\wermgr.exe\", \"\\msra.exe\", \"\\OneDriveSetup.exe\", \"\\mobsync.exe\", \"\\xwizard.exe\" ) AND CmdLine EndsWith \".exe\" AND TgtProcRelation = \"child\""]
+    },
+    "Qbot HTML Smuggling": {
+        "url": ["Contract#\\d*\\.html",
+                    "Cancellation_\\d*\\.html",
+                    "IN\\d*\\.html",
+                    "ComplianceReportCopy#\\d*4\\.html",
+                    "Grant#\\d*\\.html",
+                    "REF#\\d*_.*_.*\\.html",
+                    "ContractCopy#\\d*\\.html",
+                    "Document#\\d*.*\\.html"]
+    },
+    "Qbot Persistence": {
+        "query": ["RegistryKeyPath RegExp \"USER\\\\S-.*\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\\\d*[a-zA-Z]+\\d+\\w*$\" AND RegistryValueType = \"SZ\" AND RegistryValue RegExp \"regsvr32.exe \\\"C:\\\\Users\\\\\\w+\\\\AppData\\\\Roaming\\\\Microsoft\\\\\\w+\\\\\\w+\\.dll\"" ]
+    },
+    "Qbot Config": {
+        "query": ["EventType = \"Registry Value Create\" AND RegistryValueType = \"BINARY\" AND RegistryKeyPath RegExp \"USER\\\\S-.*\\\\Software\\\\Microsoft\\\\\\w+\\\\\\d*[a-zA-Z]+\\d+\\w*$\""]
+    },
+    "Qbot Renamed DLL Extension": {
+        "query": ["SrcProcName In (\"rundll32.exe\", \"regsvr32.exe\") and SrcProcCmdLine RegExp \".exe\\\" \\\"[A-Ba-bD-Zd-z]:\\\\.*\\.\\w{3}(?<!dll|msi|exe)\\\"$\""]
+    },
+    "Qbot Credential Access": {
+        "query": ["CmdLine ContainsCIS \"AppData\\Local\\Microsoft\\Windows\\WebCache\" AND CmdLine ContainsCIS \"esentutl.exe /r V01 /l\""]
+    },
+    "Wermgr Outbound Connection": {
+        "query": ["EventType = \"IP Connect\" AND NetEventDirection = \"OUTGOING\"  AND User = \"NT AUTHORITY\\SYSTEM\" AND SrcProcCmdLine EndsWith \"wermgr.exe\""]
+    },
+    "Qbot Cobalt Strike Injection": {
+        "query": ["SrcProcParentCmdLine ContainsCIS \"svchost.exe -k UnistackSvcGroup\" AND SrcProcImagePath EndsWith \"\\rundll32.exe\" AND NetEventDirection = \"OUTGOING\""]
+    },
+    "Qbot MSI Delivery": {
+        "query": ["SrcProcParentImagePath EndsWithCIS \"\\msiexec.exe\" and SrcProcImagePath EndsWithCIS \"\\rundll32.exe\" and SrcProcCmdLine EndsWith \",next\" and TgtProcImagePath In Contains Anycase (\"\\rundll32.exe\", \"\\wermgr.exe\", \"\\wscript.exe\")"]
+    }
+}
