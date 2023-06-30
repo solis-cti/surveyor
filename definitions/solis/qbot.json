@@ -1,7 +1,4 @@
 {
-    "Archive to ISO": {
-        "query": ["EndpointMachineType In ( \"desktop\" , \"laptop\" ) AND EventType = \"File Creation\" AND ( ( TgtFilePath Contains \".zip\" AND TgtFilePath In Contains (\".img\", \".iso\") AND TgtFilePath Does Not Contain \".lnk\" ) OR ( CmdLine In Contains  ( \".zip\" , \".7z\" , \".rar\" ) AND (TgtFilePath RegExp \"\\.iso$\" OR TgtFilePath RegExp \"\\.img$\") ) )"]
-    },
     "Qbot TIDB IOCs": {
         "query": ["TIIndicatorName Contains Anycase \"Qakbot\" AND ( TIIndicatorValue Does Not ContainCIS \"tria.ge\" AND TIIndicatorValue Does Not ContainCIS \".ms\" )"]
     },

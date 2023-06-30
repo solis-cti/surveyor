@@ -1,0 +1,8 @@
+{
+    "Archive to ISO": {
+        "query": ["EndpointMachineType In ( \"desktop\" , \"laptop\" ) AND EventType = \"File Creation\" AND ( ( TgtFilePath Contains \".zip\" AND TgtFilePath In Contains (\".img\", \".iso\") AND TgtFilePath Does Not Contain \".lnk\" ) OR ( CmdLine In Contains  ( \".zip\" , \".7z\" , \".rar\" ) AND (TgtFilePath RegExp \"\\.iso$\" OR TgtFilePath RegExp \"\\.img$\") ) )"]
+    },
+	"Zip Archive Execution without Extract": {
+		"query": ["EndpointMachineType In ( \"desktop\", \"laptop\" ) AND ( TgtFilePath RegExp \"AppData\\\\Local\\\\Temp\\.*\\.zip\\\\.*\" or IndicatorMetadata RegExp \"\\.zip\\\\.*\\.(js[^o]|ps1|bat|cmdline).*\" or SrcProcCmdLine RegExp \"AppData\\\\Local\\\\Temp\\\\.*\\.zip\\\\.*\\.(js[^o]|ps1|bat|cmdline).*\")"]
+	}
+)
