@@ -1,0 +1,5 @@
+{
+    "MoveIT Compiled Backdoor": {
+        "query": ["src.process.parent.name = \"w3wp.exe\" AND src.process.parent.cmdline contains \"moveit\" AND src.process.name = \"csc.exe\" AND src.process.cmdline contains \"Temporary ASP.NET Files\" AND (tgt.process.name = \"cvtres.exe\" OR tgt.file.path matches '.*?App_Web_[a-z0-9A-Z]{1,40}\\.dll$')"]
+    }
+}

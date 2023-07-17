@@ -1,0 +1,40 @@
+{
+    "Action1": {
+        "filemod": ["action1_agent.exe", "action1_remote.exe"],
+        "process_name": ["action1_agent.exe", "action1_remote.exe"],
+        "digsig_publisher": ["Action1 Corporation"]
+    },
+    "AnyDesk" :{
+        "process_name": ["anydesk.exe"],
+        "domain": ["net.anydesk.com"],
+        "digsig_publisher": ["philandro Software GmbH"],
+        "filemod": ["AnyDesk"]
+    },
+    "Atera": {
+        "process_name": ["atera_agent.exe",
+                        "AteraAgent.exe"],
+        "filemod": ["\\Atera"]
+    },
+    "DW Service": {
+        "process_name": ["dwagsvc.exe",
+                        "dwagent.exe",
+                        "dwaginc.exe"],
+        "filemod": ["DWAgent"],
+        "digsig_publisher": ["DWSNET OÜ"]
+    },
+    "Splashtop": {
+        "process_name": ["strwinclt.exe",
+                        "Splashtop"],
+        "digsig_publisher": ["Splashtop Inc."],
+        "domain": ["relay.splashtop.com",
+                "s2.symcb.com",
+                "sv.symcd.com",
+                "api.splashtop.com"]
+    },
+    "Syncro": {
+        "process_name": ["Syncro"],
+        "filemod": ["RepairTech",
+                    "LiveAgent",
+                    "Syncro"]
+    }
+}

@@ -35,8 +35,9 @@
     "50miner": {
         "process_name": ["50miner.exe"]
     },
-    "Cuda Miner": {
-        "process_name": ["cudaminer.exe"]
+    "Cudo Miner": {
+        "process_name": ["cudominer.exe"],
+        "filemod": ["Cudo Miner"]
     },
     "UFASoft": {
         "process_name": ["coin-miner.exe"]
@@ -76,5 +77,16 @@
     },
     "YAM": {
         "process_name": ["yam"]
+    },
+    "NiceHash": {
+        "process_name": ["nicehash.exe",
+                         "nicehash"]
+    },
+    "SaladMiner": {
+        "filemod": ["AppData\\Roaming\\Salad\\plugin-bin"]
+    },
+    "PhoenixMiner": {
+        "process_name": ["PhoenixMiner.exe",
+                         "PhoenixMiner"]
     }
 }
