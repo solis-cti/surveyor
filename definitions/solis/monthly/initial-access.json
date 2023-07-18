@@ -5,4 +5,4 @@
 	"Zip Archive Execution without Extract": {
 		"query": ["EndpointMachineType In ( \"desktop\", \"laptop\" ) AND ( TgtFilePath RegExp \"AppData\\\\Local\\\\Temp\\.*\\.zip\\\\.*\" or IndicatorMetadata RegExp \"\\.zip\\\\.*\\.(js[^o]|ps1|bat|cmdline).*\" or SrcProcCmdLine RegExp \"AppData\\\\Local\\\\Temp\\\\.*\\.zip\\\\.*\\.(js[^o]|ps1|bat|cmdline).*\")"]
 	}
-)
+}
