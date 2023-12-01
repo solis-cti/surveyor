@@ -1,11 +1,17 @@
 {
     "cobalt strike": {
-        "query": ["ProcessName in contains anycase (\"regsvr32.exe\", \"rundll32.exe\") AND SrcProcUser ContainsCIS \"NT AUTHORITY\\SYSTEM\" AND UrlAction = \"GET\"",
-                "SrcProcCmdLine ContainsCIS \"rundll32.exe\" AND SrcProcCmdLine RegExp \"\\\\ProgramData\\\\[^\\\\]*\\.dll,\\s?DllRegisterServer\"",
-                "EventType = \"Duplicate Process Handle\"  AND TgtProcImagePath ContainsCIS \"\\winlogon.exe\" AND NOT SrcProcImagePath In Contains Anycase (\"\\system32\\smss.exe\", \"\\system32\\lsm.exe\", \"\\system32\\svchost.exe\",  \"\\system32\\csrss.exe\", \"\\WerFault.exe\", \"c:\\Program files\", \"CreativeCloudSet-Up.exe\", \"Creative_Cloud_Set-Up.exe\", \"GoToAssistTools64.exe\" ) AND SrcProcImagePath EXISTS AND SrcProcPID != \"4\"",
-                "SrcProcImagePath In Contains Anycase (\"rundll32.exe\", \"regsvr32.exe\") AND  CmdLine RegExp \"\\.\\w{3}\\\"?,#1\\\"?$\""]
+        "query": ["src.process.name contains ('regsvr32.exe', 'rundll32.exe') && src.process.user contains 'NT AUTHORITY\\\\SYSTEM' && UrlAction == 'GET'",
+            "src.process.cmdline contains 'rundll32.exe' && src.process.cmdline matches '\\\\\\\\ProgramData\\\\\\\\[^\\\\\\\\]*\\\\.dll,\\\\s?DllRegisterServer'",
+            "event.type = 'Duplicate Process Handle' && tgt.process.image.path contains '\\\\winlogon.exe' && !(src.process.image.path contains ('\\\\system32\\\\smss.exe', '\\\\system32\\\\lsm.exe', '\\\\system32\\\\svchost.exe', '\\\\system32\\\\csrss.exe', '\\\\WerFault.exe', 'c:\\\\Program files', 'CreativeCloudSet-Up.exe', 'Creative_Cloud_Set-Up.exe', 'GoToAssistTools64.exe')) && src.process.pid != '4'",
+            "src.process.image.path contains ('rundll32.exe', 'regsvr32.exe') && src.process.cmdline matches '\\\\.\\\\w{3}\"?,#1\"?$'"]
     },
     "brute ratel": {
-        "query": ["ModulePath ContainsCIS \"\\version.dll\" AND NOT ModulePath ContainsCIS \"\\windows\\system32\" AND NOT ModulePath ContainsCIS \"\\windows\\syswow64\""]
+        "query": ["module.path contains '\\\\version.dll' && !(module.path contains '\\\\windows\\\\system32') && !(module.path contains '\\\\windows\\\\syswow64')"]
+    },
+    "Darkgate": {
+        "query": ["src.process.name contains 'autoit3.exe' && (indicator.name contains ('ProcessHollowingSystemSigned', 'ParallelNtDllLoad', 'RemoteInjection', 'SuspiciousKeylogging', 'StartupFile') || (osSrc.process.name contains ('vbc.exe', 'regasm.exe', 'systeminfo.exe') && dst.port.number in ('80', '443', '8080')) || tgt.file.path contains ('AutoIt3.exe', '.au3') || src.process.dnsCount > 1 )"]
+    },
+    "Wermgr Outbound Connection (qbot)": {
+        "query": ["event.type = 'IP Connect' && event.network.direction = 'OUTGOING' && src.process.user = 'NT AUTHORITY\\\\SYSTEM' && src.process.cmdline contains 'wermgr.exe'"]
     }
 }

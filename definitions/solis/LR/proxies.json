@@ -17,5 +17,9 @@
     },
     "X-VPN": {
         "process_name": ["xvpn.exe"]
+    },
+    "LocalXpose": {
+        "filemod": ["loclx.exe"],
+        "process_name": ["loclx.exe"]
     }
 }

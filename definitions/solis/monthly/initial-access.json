@@ -4,5 +4,8 @@
     },
 	"Zip Archive Execution without Extract": {
 		"query": ["EndpointMachineType In ( \"desktop\", \"laptop\" ) AND ( TgtFilePath RegExp \"AppData\\\\Local\\\\Temp\\.*\\.zip\\\\.*\" or IndicatorMetadata RegExp \"\\.zip\\\\.*\\.(js[^o]|ps1|bat|cmdline).*\" or SrcProcCmdLine RegExp \"AppData\\\\Local\\\\Temp\\\\.*\\.zip\\\\.*\\.(js[^o]|ps1|bat|cmdline).*\")"]
-	}
+	},
+    "LNK Execution": {
+        "query": ["IndicatorName = \"ProcessStartedFromLnk\" AND ( SrcProcCmdLine RegExp \"^([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(?<!172\\.(16-31))(?<!127)(?<!^10)(?<!^0)\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(?<!192\\.168)(?<!172\\.(16-31))\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$\" OR SrcProcCmdLine In Contains Anycase (\"\\mshta.exe\", \"\\cmd.exe\", \"\\powershell.exe\", \"\\rundll32.exe\", \"\\regsvr32.exe\") ) AND IndicatorMetadata In Contains Anycase (\".zip\", \".iso\")"]
+    }
 }

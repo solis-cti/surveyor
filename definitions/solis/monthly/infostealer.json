@@ -1,0 +1,23 @@
+{
+    "Redline": {
+        "filemod": ["\\Pictures\\Minor Policy",
+                    "\\Pictures\\Adobe Films",
+                    "\\PowerControl\\PowerControl_Svc.exe",
+                    "C:\\ProgramData\\DNTException\\node.exe",
+                    "\\AppData\\Local\\Temp\\IXP000.TMP",
+                    "\\AppData\\Local\\Temp\\IXP001.TMP",
+                    "\\AppData\\Local\\Temp\\IXP002.TMP"],
+        "process_name": ["\\Pictures\\Minor Policy",
+                    "\\Pictures\\Adobe Films",
+                    "\\PowerControl\\PowerControl_Svc.exe",
+                    "C:\\ProgramData\\DNTException\\node.exe",
+                    "\\AppData\\Local\\Temp\\IXP000.TMP",
+                    "\\AppData\\Local\\Temp\\IXP001.TMP",
+                    "\\AppData\\Local\\Temp\\IXP002.TMP"],
+        "regmod": [".onion",
+                    "wextract_cleanup",
+					"Software\\Microsoft\\ResKit",
+                    "Software\\LilFreskeUS",
+                    "Software\\Microsoft\\daa8b658"]
+    }
+}

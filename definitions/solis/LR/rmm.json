@@ -11,7 +11,8 @@
     },
     "Action1": {
         "filemod": ["action1_agent.exe", "action1_remote.exe"],
-        "process_name": ["action1_agent.exe", "action1_remote.exe"]
+        "process_name": ["action1_agent.exe", "action1_remote.exe"],
+        "digsig_publisher": ["Action1 Corporation"]
     },
     "AeroAdmin" : {
         "process_name": ["AeroAdmin.exe"],
@@ -44,12 +45,17 @@
     },
     "ConnectWise Control": {
         "process_name": ["screenconnect.clientservice.exe",
-                        "screenconnect.windowsclient.exe"],
+                        "ScreenConnect.Service.exe",
+                        "ScreenConnect.Client.exe",
+                        "screenconnect.windowsclient.exe",
+                        "ConnectWiseControl.Client.exe"],
         "domain": ["live.screenconnect.com"],
         "digsig_publisher": ["ConnectWise, LLC"]
     },
     "ConnectWise Automate": {
-        "process_name": ["LTSvcMon.exe"],
+        "process_name": ["LTSvcMon.exe",
+                        "ConnectWise.exe",
+                        "ConnectWiseManage.exe"],
         "internal_name": ["ConnectWise"]
     },
     "Chrome Remote Desktop": {
@@ -106,6 +112,14 @@
     },
     "NetSupport Manager Additional": {
         "process_file_description": ["NetSupport Client Application"]
+    },
+    "Ninja RMM": {
+        "internal_name": ["NinjaRMMAgent"],
+        "process_name": ["NinjaRMMAgent.exe",
+                        "NinjaRMMAgentPatcher.exe",
+                        "ninjarmm-cli.exe"],
+        "filemod": ["NinjaRMM"],
+        "digsig_publisher": ["NinjaRMM, LLC"]
     },
     "PCAnywhere Client": { 
         "process_name": ["awrem32.exe"]
@@ -195,8 +209,9 @@
                         "Zoho Assist",
                         "za_connect.exe",
                         "ZohoURSService.exe",
+                        "ZMAgent.exe",
                         "connect.exe"],
-        "filemod": ["Zoho"],
+        "filemod": ["\\Zoho"],
         "domain": ["assist.zoho.com",
                 "join.zoho.com",
                 "assistlab.zoho.com",
@@ -205,5 +220,8 @@
                 "assist.cs.zohohost.com",
                 "downloads.zohocdn.com"],
         "digsig_publisher": ["ZOHO CORPORATION PRIVATE LIMITED"]
+    },
+    "ZohoMeeting Without Email": {
+        "query": ["src.process.cmdline matches (\"zoho.*-email [^@]+ -\")"]
     }
 }
