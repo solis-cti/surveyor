@@ -2,7 +2,7 @@
     "cobalt strike": {
         "query": ["src.process.name contains ('regsvr32.exe', 'rundll32.exe') && src.process.user contains 'NT AUTHORITY\\\\SYSTEM' && UrlAction == 'GET'",
             "src.process.cmdline contains 'rundll32.exe' && src.process.cmdline matches '\\\\\\\\ProgramData\\\\\\\\[^\\\\\\\\]*\\\\.dll,\\\\s?DllRegisterServer'",
-            "event.type = 'Duplicate Process Handle' && tgt.process.image.path contains '\\\\winlogon.exe' && !(src.process.image.path contains ('\\\\system32\\\\smss.exe', '\\\\system32\\\\lsm.exe', '\\\\system32\\\\svchost.exe', '\\\\system32\\\\csrss.exe', '\\\\WerFault.exe', 'c:\\\\Program files', 'CreativeCloudSet-Up.exe', 'Creative_Cloud_Set-Up.exe', 'GoToAssistTools64.exe')) && src.process.pid != '4'",
+            "event.type = 'Duplicate Process Handle' && tgt.process.image.path contains '\\\\winlogon.exe' && !(src.process.image.path contains ('\\\\windows\\\\system32', '\\\\windows\\\\syswow64', '\\\\system32\\\\smss.exe', '\\\\system32\\\\lsm.exe', '\\\\system32\\\\svchost.exe', '\\\\system32\\\\csrss.exe', '\\\\WerFault.exe', '\\\\Program files', 'CreativeCloudSet-Up.exe', 'Creative_Cloud_Set-Up.exe', 'GoToAssistTools64.exe')) && src.process.image.path contains '\\\\' && src.process.pid != '4'",
             "src.process.image.path contains ('rundll32.exe', 'regsvr32.exe') && src.process.cmdline matches '\\\\.\\\\w{3}\"?,#1\"?$'"]
     },
     "brute ratel": {
@@ -12,6 +12,6 @@
         "query": ["src.process.name contains 'autoit3.exe' && (indicator.name contains ('ProcessHollowingSystemSigned', 'ParallelNtDllLoad', 'RemoteInjection', 'SuspiciousKeylogging', 'StartupFile') || (osSrc.process.name contains ('vbc.exe', 'regasm.exe', 'systeminfo.exe') && dst.port.number in ('80', '443', '8080')) || tgt.file.path contains ('AutoIt3.exe', '.au3') || src.process.dnsCount > 1 )"]
     },
     "Wermgr Outbound Connection (qbot)": {
-        "query": ["event.type = 'IP Connect' && event.network.direction = 'OUTGOING' && src.process.user = 'NT AUTHORITY\\\\SYSTEM' && src.process.cmdline contains 'wermgr.exe'"]
+        "query": ["event.type = 'IP Connect' && event.network.direction = 'OUTGOING' && src.process.user = 'NT AUTHORITY\\\\SYSTEM' && src.process.cmdline matches 'wermgr\\\\.exe\"$'"]
     }
 }
