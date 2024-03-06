@@ -11,6 +11,10 @@
                          "boxsyncmonitor.exe",
                          "syncupdaterservice.exe"]
     },
+    "Bublup": {
+        "url": ["bublup.com"],
+        "domain": ["bublup.com"]
+    },
     "Carbonite": {
         "process_name": ["CarboniteService.exe",
                          "carbonitepreinstaller.exe"]
